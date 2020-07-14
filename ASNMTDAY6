@@ -1,0 +1,125 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "companyname\n"
+     ]
+    }
+   ],
+   "source": [
+    "str = 'username@companyname.com'\n",
+    "print(str[9:20])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['bag', 'hello', 'without', 'world']\n"
+     ]
+    }
+   ],
+   "source": [
+    "str1 =['without','hello','bag','world' ]\n",
+    "#str1 = sorted['world','win','mine']\n",
+    "str1 = sorted(str1)\n",
+    "print(str1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 73,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "execution_count": 73,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a=[1 ,2, 4, 6, 3, 7, 8 ]\n",
+    "sum(xrange(a[0],a[-1]+1)) - sum(a)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('The original list is : ', [12, 24, 35, 88, 120, 155])\n"
+     ]
+    }
+   ],
+   "source": [
+    "a=[12 ,24, 35 ,24, 88, 120, 155, 88, 120 ,155 ]\n",
+    "a= sorted(list(set(a)))\n",
+    "#a=removeDuplicates(a)\n",
+    "print(\"The original list is : \" , list(a) )"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 123,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "set(['tea', 'hometown', 'rainfall'])\n",
+      "set(['tea', 'hometown', 'pakoda', 'rainfall'])\n"
+     ]
+    }
+   ],
+   "source": [
+    "set= {'hometown','rainfall','tea'}\n",
+    "print(set)\n",
+    "set.add('pakoda')\n",
+    "print(set)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.16"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
