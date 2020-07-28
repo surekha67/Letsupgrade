@@ -1,0 +1,449 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[[0.32332236 0.42614429 0.34090047]\n",
+      "  [0.30239926 0.06078701 0.81758218]\n",
+      "  [0.69244582 0.90739203 0.09514133]]\n",
+      "\n",
+      " [[0.1856335  0.30801659 0.71735824]\n",
+      "  [0.07082395 0.03393906 0.52280036]\n",
+      "  [0.36543977 0.4492639  0.89905446]]\n",
+      "\n",
+      " [[0.15901478 0.54838673 0.92300767]\n",
+      "  [0.70487954 0.06796127 0.87120028]\n",
+      "  [0.93256107 0.53695431 0.43861216]]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create a 3x3x3 array with random values \"\n",
+    "\n",
+    "import numpy as np\n",
+    "x=np.random.random((3,3,3))\n",
+    "print(x)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[1 0 0 0]\n",
+      " [0 2 0 0]\n",
+      " [0 0 3 0]\n",
+      " [0 0 0 4]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create a 5x5 matrix with values 1,2,3,4 just below the diagonal\"\n",
+    "\n",
+    "x=np.diag([1,2,3,4])\n",
+    "print(x)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "checkboard pattern\n",
+      "[[0 1 0 1 0 1 0 1]\n",
+      " [1 0 1 0 1 0 1 0]\n",
+      " [0 1 0 1 0 1 0 1]\n",
+      " [1 0 1 0 1 0 1 0]\n",
+      " [0 1 0 1 0 1 0 1]\n",
+      " [1 0 1 0 1 0 1 0]\n",
+      " [0 1 0 1 0 1 0 1]\n",
+      " [1 0 1 0 1 0 1 0]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create a 8x8 matrix and fill it with a checkerboard pattern\"\n",
+    "\n",
+    "x=np.ones((3,3,3))\n",
+    "print(\"checkboard pattern\")\n",
+    "x=np.zeros((8,8),dtype=int)\n",
+    "x[1::2,::2]=1\n",
+    "x[::2,1::2]=1\n",
+    "print(x)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original Array:\n",
+      "[[0.31389716 0.6106704  0.04691844]\n",
+      " [0.64969823 0.44727491 0.15079892]\n",
+      " [0.55044952 0.13915386 0.2959751 ]]\n",
+      "After normalization:\n",
+      "[[0.44291252 0.9352536  0.        ]\n",
+      " [1.         0.66418363 0.1723357 ]\n",
+      " [0.83534831 0.15301677 0.41318018]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Normalize a 5x5 random matrix\n",
+    "import numpy as np\n",
+    "x= np.random.random((3,3))\n",
+    "print(\"Original Array:\")\n",
+    "print(x)\n",
+    "xmax, xmin = x.max(), x.min()\n",
+    "x = (x - xmin)/(xmax - xmin)\n",
+    "print(\"After normalization:\")\n",
+    "print(x)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('Array1: ', array([ 0, 10, 20, 40, 60]))\n",
+      "('Array2: ', [10, 30, 40])\n",
+      "Common values between two arrays:\n",
+      "[10 40]\n"
+     ]
+    }
+   ],
+   "source": [
+    "#  How to find common values between two arrays? \n",
+    "import numpy as np\n",
+    "array1 = np.array([0, 10, 20, 40, 60])\n",
+    "print(\"Array1: \",array1)\n",
+    "array2 = [10, 30, 40]\n",
+    "print(\"Array2: \",array2)\n",
+    "print(\"Common values between two arrays:\")\n",
+    "print(np.intersect1d(array1, array2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('Yestraday: ', numpy.datetime64('2020-07-26'))\n",
+      "('Today: ', numpy.datetime64('2020-07-27'))\n",
+      "('Tomorrow: ', numpy.datetime64('2020-07-28'))\n"
+     ]
+    }
+   ],
+   "source": [
+    "# How to get the dates of yesterday, today and tomorrow?\n",
+    "import numpy as np\n",
+    "yesterday = np.datetime64('today', 'D') - np.timedelta64(1, 'D')\n",
+    "print(\"Yestraday: \",yesterday)\n",
+    "today     = np.datetime64('today', 'D')\n",
+    "print(\"Today: \",today)\n",
+    "tomorrow  = np.datetime64('today', 'D') + np.timedelta64(1, 'D')\n",
+    "print(\"Tomorrow: \",tomorrow)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First array:\n",
+      "[0 1 0 0 0 0]\n",
+      "Second array:\n",
+      "[0 0 1 1 0 1]\n",
+      "Test above two arrays are equal or not!\n",
+      "False\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Consider two random array A and B, check if they are equal\"\n",
+    "\n",
+    "import numpy as np\n",
+    "x = np.random.randint(0,2,6)\n",
+    "print(\"First array:\")\n",
+    "print(x)\n",
+    "y = np.random.randint(0,2,6)\n",
+    "print(\"Second array:\")\n",
+    "print(y)\n",
+    "print(\"Test above two arrays are equal or not!\")\n",
+    "array_equal = np.allclose(x, y)\n",
+    "print(array_equal)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original array:\n",
+      "[0.5861723  0.85695228 0.20720506 0.69903662 0.90982357 0.12080813\n",
+      " 0.24693155 0.16951305 0.66068744 0.10225096]\n",
+      "Maximum value replaced by 0:\n",
+      "[0.5861723  0.85695228 0.20720506 0.69903662 0.         0.12080813\n",
+      " 0.24693155 0.16951305 0.66068744 0.10225096]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create random vector of size 10 and replace the maximum value by 0 \"\n",
+    "import numpy as np\n",
+    "x = np.random.random(10)\n",
+    "print(\"Original array:\")\n",
+    "print(x)\n",
+    "x[x.argmax()] = 0\n",
+    "print(\"Maximum value replaced by 0:\")\n",
+    "print(x)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "threshold must be numeric and non-NAN, try sys.maxsize for untruncated representation",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[1;32m<ipython-input-14-7fb8221ea777>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m()\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[1;32mimport\u001b[0m \u001b[0mnumpy\u001b[0m \u001b[1;32mas\u001b[0m \u001b[0mnp\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 2\u001b[1;33m \u001b[0mnp\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mset_printoptions\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mthreshold\u001b[0m\u001b[1;33m=\u001b[0m\u001b[0mnp\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mnan\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m      3\u001b[0m \u001b[0mx\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mnp\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mzeros\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;36m4\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;36m4\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      4\u001b[0m \u001b[1;32mprint\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mx\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;32mC:\\Users\\HP\\Anaconda2\\lib\\site-packages\\numpy\\core\\arrayprint.pyc\u001b[0m in \u001b[0;36mset_printoptions\u001b[1;34m(precision, threshold, edgeitems, linewidth, suppress, nanstr, infstr, formatter, sign, floatmode, **kwarg)\u001b[0m\n\u001b[0;32m    244\u001b[0m     opt = _make_options_dict(precision, threshold, edgeitems, linewidth,\n\u001b[0;32m    245\u001b[0m                              \u001b[0msuppress\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mnanstr\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0minfstr\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0msign\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mformatter\u001b[0m\u001b[1;33m,\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 246\u001b[1;33m                              floatmode, legacy)\n\u001b[0m\u001b[0;32m    247\u001b[0m     \u001b[1;31m# formatter is always reset\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    248\u001b[0m     \u001b[0mopt\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'formatter'\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mformatter\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;32mC:\\Users\\HP\\Anaconda2\\lib\\site-packages\\numpy\\core\\arrayprint.pyc\u001b[0m in \u001b[0;36m_make_options_dict\u001b[1;34m(precision, threshold, edgeitems, linewidth, suppress, nanstr, infstr, sign, formatter, floatmode, legacy)\u001b[0m\n\u001b[0;32m     91\u001b[0m         \u001b[1;31m# forbid the bad threshold arg suggested by stack overflow, gh-12351\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     92\u001b[0m         \u001b[1;32mif\u001b[0m \u001b[1;32mnot\u001b[0m \u001b[0misinstance\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mthreshold\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mnumbers\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mNumber\u001b[0m\u001b[1;33m)\u001b[0m \u001b[1;32mor\u001b[0m \u001b[0mnp\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0misnan\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mthreshold\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 93\u001b[1;33m             raise ValueError(\"threshold must be numeric and non-NAN, try \"\n\u001b[0m\u001b[0;32m     94\u001b[0m                              \"sys.maxsize for untruncated representation\")\n\u001b[0;32m     95\u001b[0m     \u001b[1;32mreturn\u001b[0m \u001b[0moptions\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;31mValueError\u001b[0m: threshold must be numeric and non-NAN, try sys.maxsize for untruncated representation"
+     ]
+    }
+   ],
+   "source": [
+    "# How to print all the values of an array?\n",
+    "import numpy as np\n",
+    "np.set_printoptions(threshold=np.nan)\n",
+    "x = np.zeros((4, 4))\n",
+    "print(x)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original matrix:\n",
+      "\n",
+      "[[0.22636145 0.9640512  0.34553396 0.05273036 0.86507632 0.20628632\n",
+      "  0.27219669 0.24132981 0.70537363 0.44652145]\n",
+      " [0.05722956 0.61830033 0.02781369 0.43878893 0.96599857 0.73034033\n",
+      "  0.27085011 0.76897383 0.09549686 0.60019773]\n",
+      " [0.23242966 0.40730398 0.72168284 0.29329352 0.19711258 0.15094463\n",
+      "  0.56351969 0.66928388 0.71236481 0.49997114]\n",
+      " [0.24398451 0.49006984 0.31682703 0.17585451 0.12127752 0.39094864\n",
+      "  0.58909942 0.31972465 0.8564713  0.68812428]\n",
+      " [0.04957117 0.06435889 0.17537865 0.1740747  0.01600654 0.17329814\n",
+      "  0.43125868 0.85475993 0.89332715 0.92354392]]\n",
+      "\n",
+      "Subtract the mean of each row of the said matrix:\n",
+      "\n",
+      "[[-0.20618467  0.53150508 -0.08701216 -0.37981576  0.4325302  -0.2262598\n",
+      "  -0.16034943 -0.19121631  0.27282751  0.01397533]\n",
+      " [-0.40016943  0.16090134 -0.4295853  -0.01861006  0.50859957  0.27294133\n",
+      "  -0.18654888  0.31157484 -0.36190214  0.14279873]\n",
+      " [-0.21236101 -0.03748669  0.27689216 -0.15149716 -0.24767809 -0.29384605\n",
+      "   0.11872902  0.22449321  0.26757414  0.05518047]\n",
+      " [-0.17525366  0.07083167 -0.10241114 -0.24338366 -0.29796065 -0.02828953\n",
+      "   0.16986125 -0.09951352  0.43723313  0.26888611]\n",
+      " [-0.32598661 -0.31119889 -0.20017913 -0.20148308 -0.35955124 -0.20225963\n",
+      "   0.0557009   0.47920216  0.51776937  0.54798614]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Subtract the mean of each row of a matrix\n",
+    "import numpy as np\n",
+    "print(\"Original matrix:\\n\")\n",
+    "X = np.random.rand(5, 10)\n",
+    "print(X)\n",
+    "print(\"\\nSubtract the mean of each row of the said matrix:\\n\")\n",
+    "Y = X - X.mean(axis=1, keepdims=True)\n",
+    "print(Y)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[2. 3. 2. 4. 3. 3. 2. 3. 4. 4.]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Consider a given vector, how to add 1 to each element indexed by a second vector (be careful with repeated indices)? \"\n",
+    "\n",
+    "Z = np.ones(10) \n",
+    "I = np.random.randint(0,len(Z),20)\n",
+    "Z += np.bincount(I, minlength=len(Z)) \n",
+    "print(Z)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('Dot product is : ', 32)\n"
+     ]
+    }
+   ],
+   "source": [
+    "# How to get the diagonal of a dot product?\n",
+    "X = [6,5,4]\n",
+    "Y = [3,2,1]\n",
+    "DotProduct = np.dot(X,Y)\n",
+    "print('Dot product is : ' , DotProduct)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "7\n"
+     ]
+    }
+   ],
+   "source": [
+    "# How to find the most frequent value in an array?\n",
+    "Z = np.random.randint(0,10,50) \n",
+    "print(np.bincount(Z).argmax()) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([9995, 9996, 9997, 9998, 9999])"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# How to get the n largest values of an array\n",
+    "Z = np.arange(10000) \n",
+    "np.random.shuffle(Z) \n",
+    "n = 5 \n",
+    " # Slow print \n",
+    "Z[np.argsort(Z)[-n:]]\n",
+    " # Fast print (Z[np.argpartition(-Z,n)[:n]]) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# How to create a record array from a regular array?\"\n",
+    "\n",
+    "import numpy as np\n",
+    "arra1 = np.array([(\"dhoni\", 88.5, 90),\n",
+    "                 (\"Aryan\", 87, 99),\n",
+    "             (\"virat\", 85.5, 91)])\n",
+    "print(\"Original arrays:\")\n",
+    "print(arra1)\n",
+    "print(\"\\nRecord array;\")\n",
+    "result = np.core.records.fromarrays(arra1.T,\n",
+    "                              names='col1, col2, col3',\n",
+    "                              formats = 'S80, f8, i8')\n",
+    "print(result)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.16"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
