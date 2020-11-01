@@ -1,0 +1,256 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "from scipy.stats import pearsonr\n",
+    "import matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset = pd.read_csv('general_data.csv')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#  Removing null values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset.dropna(inplace=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Age                        0\n",
+       "Attrition                  0\n",
+       "BusinessTravel             0\n",
+       "Department                 0\n",
+       "DistanceFromHome           0\n",
+       "Education                  0\n",
+       "EducationField             0\n",
+       "EmployeeCount              0\n",
+       "EmployeeID                 0\n",
+       "Gender                     0\n",
+       "JobLevel                   0\n",
+       "JobRole                    0\n",
+       "MaritalStatus              0\n",
+       "MonthlyIncome              0\n",
+       "NumCompaniesWorked         0\n",
+       "Over18                     0\n",
+       "PercentSalaryHike          0\n",
+       "StandardHours              0\n",
+       "StockOptionLevel           0\n",
+       "TotalWorkingYears          0\n",
+       "TrainingTimesLastYear      0\n",
+       "YearsAtCompany             0\n",
+       "YearsSinceLastPromotion    0\n",
+       "YearsWithCurrManager       0\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dataset.isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Converting all columns to numerical values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.get_dummies(df,drop_first=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Age',\n",
+       " 'DistanceFromHome',\n",
+       " 'Education',\n",
+       " 'EmployeeCount',\n",
+       " 'EmployeeID',\n",
+       " 'JobLevel',\n",
+       " 'MonthlyIncome',\n",
+       " 'NumCompaniesWorked',\n",
+       " 'PercentSalaryHike',\n",
+       " 'StandardHours',\n",
+       " 'StockOptionLevel',\n",
+       " 'TotalWorkingYears',\n",
+       " 'TrainingTimesLastYear',\n",
+       " 'YearsAtCompany',\n",
+       " 'YearsSinceLastPromotion',\n",
+       " 'YearsWithCurrManager',\n",
+       " 'Attrition_Yes',\n",
+       " 'BusinessTravel_Travel_Frequently',\n",
+       " 'BusinessTravel_Travel_Rarely',\n",
+       " 'Department_Research & Development',\n",
+       " 'Department_Sales',\n",
+       " 'EducationField_Life Sciences',\n",
+       " 'EducationField_Marketing',\n",
+       " 'EducationField_Medical',\n",
+       " 'EducationField_Other',\n",
+       " 'EducationField_Technical Degree',\n",
+       " 'Gender_Male',\n",
+       " 'JobRole_Human Resources',\n",
+       " 'JobRole_Laboratory Technician',\n",
+       " 'JobRole_Manager',\n",
+       " 'JobRole_Manufacturing Director',\n",
+       " 'JobRole_Research Director',\n",
+       " 'JobRole_Research Scientist',\n",
+       " 'JobRole_Sales Executive',\n",
+       " 'JobRole_Sales Representative',\n",
+       " 'MaritalStatus_Married',\n",
+       " 'MaritalStatus_Single']"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "all_columns = list(dataset.columns)\n",
+    "all_columns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "all_columns.remove('Attrition_Yes')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Corellation between  Age is: -0.15839867954096684\n",
+      "Corellation between  DistanceFromHome is: -0.009448638515156229\n",
+      "Corellation between  Education is: -0.017106307050278748\n",
+      "Corellation between  EmployeeCount is: nan\n",
+      "Corellation between  EmployeeID is: -0.004620541850379519\n",
+      "Corellation between  JobLevel is: -0.0123815697207908\n",
+      "Corellation between  MonthlyIncome is: -0.030160293808460616\n",
+      "Corellation between  NumCompaniesWorked is: 0.042830567244720494\n",
+      "Corellation between  PercentSalaryHike is: 0.0331530371354668\n",
+      "Corellation between  StandardHours is: nan\n",
+      "Corellation between  StockOptionLevel is: -0.008164026684984366\n",
+      "Corellation between  TotalWorkingYears is: -0.16966991684723928\n",
+      "Corellation between  TrainingTimesLastYear is: -0.047585736930817066\n",
+      "Corellation between  YearsAtCompany is: -0.13300261842521555\n",
+      "Corellation between  YearsSinceLastPromotion is: -0.03142315056331017\n",
+      "Corellation between  YearsWithCurrManager is: -0.15469153690287202\n",
+      "Corellation between  BusinessTravel_Travel_Frequently is: 0.11323113896713942\n",
+      "Corellation between  BusinessTravel_Travel_Rarely is: -0.04814605215162228\n",
+      "Corellation between  Department_Research & Development is: -0.01558344007827184\n",
+      "Corellation between  Department_Sales is: -0.017531072920330997\n",
+      "Corellation between  EducationField_Life Sciences is: 0.013174583907034389\n",
+      "Corellation between  EducationField_Marketing is: -0.0028381116206652253\n",
+      "Corellation between  EducationField_Medical is: -0.001103872446646583\n",
+      "Corellation between  EducationField_Other is: -0.025070697487709803\n",
+      "Corellation between  EducationField_Technical Degree is: -0.0393178525958448\n",
+      "Corellation between  Gender_Male is: 0.018396425194440603\n",
+      "Corellation between  JobRole_Human Resources is: -0.013736925668611117\n",
+      "Corellation between  JobRole_Laboratory Technician is: 0.0010356204986367258\n",
+      "Corellation between  JobRole_Manager is: -0.017255747727142626\n",
+      "Corellation between  JobRole_Manufacturing Director is: -0.04393075231490306\n",
+      "Corellation between  JobRole_Research Director is: 0.04357883417765962\n",
+      "Corellation between  JobRole_Research Scientist is: 0.027547751725030118\n",
+      "Corellation between  JobRole_Sales Executive is: 0.012150403280644748\n",
+      "Corellation between  JobRole_Sales Representative is: -0.009653648198966577\n",
+      "Corellation between  MaritalStatus_Married is: -0.08962656513467715\n",
+      "Corellation between  MaritalStatus_Single is: 0.17294165446011917\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "c:\\users\\maa\\appdata\\local\\programs\\python\\python38-32\\lib\\site-packages\\scipy\\stats\\stats.py:3845: PearsonRConstantInputWarning: An input array is constant; the correlation coefficent is not defined.\n",
+      "  warnings.warn(PearsonRConstantInputWarning())\n"
+     ]
+    }
+   ],
+   "source": [
+    "for one_column in all_columns:\n",
+    "    corr,p = pearsonr(dataset['Attrition_Yes'],dataset[one_column])\n",
+    "    print('Corellation between ',one_column,'is:',corr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
